@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title ng-bind="title"></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+  <div class="row">
+    <div class="col-sm-12 well" style="margin-bottom: 0px;">
+      <a ui-sref="home()">Homepage</a> | <a ui-sref="album()">Albums</a>
+
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3 well" style="margin-bottom: 0px;">
+
+        <div ui-view="side"></div>
+
+
+      </div>
+    <div class="col-sm-9 well">
+        <div ui-view></div>
+    </div>
+  </div>
+
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+  <!-- vendor -->
+  <script src="../bower_components/lodash/lodash.js"></script>
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-route/angular-route.js"></script>
+  <script src="../bower_components/angular-animate/angular-animate.js"></script>
+  <script src="../bower_components/angular-aria/angular-aria.js"></script>
+  <script src="../bower_components/angular-loader/angular-loader.js"></script>
+  <script src="../bower_components/angular-material/angular-material.js"></script>
+  <script src="../bower_components/angular-messages/angular-messages.js"></script>
+  <script src="../bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+  <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="../bower_components/restangular/src/restangular.js"></script>
+
+  <!-- main -->
+  <script src="config/app.js"></script>
+  <script src="config/app.module.js"></script>
+  <script src="config/app.config.js"></script>
+
+  <!-- services -->
+  <script src="js/services/api.service.js"></script>
+  <script src="js/services/albums.api.service.js"></script>
+  <script src="js/services/comments.api.service.js"></script>
+  <script src="js/services/photos.api.service.js"></script>
+  <script src="js/services/posts.api.service.js"></script>
+  <script src="js/services/todos.api.service.js"></script>
+  <script src="js/services/users.api.service.js"></script>
+
+
+  <!-- controllers -->
+  <script src="js/album/album-controller.js"></script>
+  <script src="js/user/user-controller.js"></script>
+  <script src="js/todo/todo-controller.js"></script>
+  <script src="js/post/post-controller.js"></script>
+  <script src="js/photo/photo-controller.js"></script>
+
+  <!-- routes -->
+  <script src="js/album/album-routes.js"></script>
+
+</body>
+</html>

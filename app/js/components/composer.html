@@ -1,0 +1,22 @@
+<md-card>
+    <md-card-content>
+        <form name="$ctrl.composerForm">
+            <md-input-container class="md-block">
+                <label>Status Update</label>
+                <textarea ng-model="$ctrl.status" ng-disabled="$ctrl.isLoading" md-maxlength="150" rows="3"></textarea>
+            </md-input-container>
+        </form>
+
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-primary md-raised"
+                   ng-disabled="$ctrl.disableSubmit()"
+                   ng-click="$ctrl.submit()">
+            <div layout="row" layout-align="center center">
+                <div ng-hide="$ctrl.isLoading">Submit</div>
+                <md-progress-circular ng-show="$ctrl.isLoading" md-diameter="25"
+                                      md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </md-button>
+    </md-card-actions>
+</md-card>

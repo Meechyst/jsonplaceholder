@@ -1,0 +1,81 @@
+<md-card>
+    <md-card-header>
+        <md-card-avatar>
+            <ng-md-icon icon="account_circle" style="fill:grey"></ng-md-icon>
+        </md-card-avatar>
+        <md-card-header-text>
+            <span class="md-title">{{$ctrl.content.poster.name}}</span>
+            <span class="md-subhead">
+                <span am-time-ago="$ctrl.content.created_at"></span>
+            </span>
+        </md-card-header-text>
+    </md-card-header>
+    <md-card-content>
+        <p>
+            {{$ctrl.content.post.text}}
+        </p>
+    </md-card-content>
+    <md-divider></md-divider>
+    <md-card-actions layout="row" layout-align="start center">
+        <md-card-icon-actions>
+            <md-button ng-if="$ctrl.content.is_liked" ng-click="$ctrl.unlike()" class="md-primary md-icon-button"
+                       ng-disabled="$ctrl.disableLike">
+                <md-icon>thumb_up</md-icon>
+            </md-button>
+            <md-button ng-if="!$ctrl.content.is_liked" ng-click="$ctrl.like()" class="md-icon-button"
+                       ng-disabled="$ctrl.disableLike">
+                <md-icon>thumb_up</md-icon>
+            </md-button>
+            <md-button ng-if="$ctrl.content.likes.length" class="md-primary" ng-click="$ctrl.showLikes($event)">
+                {{$ctrl.content.likes.length}} Likes
+            </md-button>
+            <md-button ng-if="$ctrl.content.comments.length && !$ctrl.isCommentsVisible" class="md-primary"
+                       ng-click="$ctrl.toggleComments()">
+                {{$ctrl.content.comments.length}} Comments
+            </md-button>
+            <md-button ng-if="!$ctrl.content.comments.length && !$ctrl.isCommentsVisible" class="md-primary"
+                       ng-click="$ctrl.toggleComments()">
+                Add Comment
+            </md-button>
+            <md-button ng-if="$ctrl.isCommentsVisible" class="md-primary" ng-click="$ctrl.toggleComments()">
+                Hide Comments
+            </md-button>
+        </md-card-icon-actions>
+    </md-card-actions>
+    <md-divider></md-divider>
+    <md-card-content ng-if="$ctrl.isCommentsVisible">
+        <md-content>
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="comment in $ctrl.content.comments">
+                    <div class="md-list-item-text">
+                        <div layout="row" layout-align="start center"><h3>{{comment.entity.name}}</h3> &nbsp;-&nbsp; <p>
+                            {{comment.created_at}}</p></div>
+                        <h4>{{comment.text}}</h4>
+
+                    </div>
+                    <md-button class="md-secondary">Respond</md-button>
+                    <md-divider></md-divider>
+                </md-list-item>
+            </md-list>
+
+            <form name="$ctrl.composerForm" layout="row" layout-align="start start">
+                <md-input-container class="md-block" flex>
+                    <label>Your Comment</label>
+                    <textarea ng-model="$ctrl.comment" ng-disabled="$ctrl.isLoading"></textarea>
+                </md-input-container>
+
+                <md-button class="md-primary md-raised"
+                           ng-disabled="$ctrl.disableSubmit()"
+                           ng-click="$ctrl.submit()">
+                    <div layout="row" layout-align="center center">
+                        <div ng-hide="$ctrl.isLoading">Submit</div>
+                        <md-progress-circular ng-show="$ctrl.isLoading" md-diameter="25"
+                                              md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                </md-button>
+            </form>
+
+        </md-content>
+    </md-card-content>
+
+</md-card>

@@ -1,0 +1,13 @@
+<md-card layout-align="center center">
+    <a href="" ngf-select="$ctrl.openImageUpload($file)">
+        <ng-md-icon icon="account_circle" size="120" style="fill: grey"></ng-md-icon>
+    </a>
+    <md-card-title>
+        <md-card-title-text layout-align="center center">
+            <span class="md-headline">{{$ctrl.entity.name}}</span>
+            <br/>
+            <i> <span class="md-subhead" ng-keyup="$ctrl.enterNew()"  ng-model="$ctrl.editSub" content-editable>Describe yourself in a couple of words </span></i>
+            <span>{{$ctrl.hi}}</span>
+        </md-card-title-text>
+    </md-card-title>
+</md-card>
