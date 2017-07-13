@@ -2,7 +2,10 @@
   "name": "angular-seed",
   "private": true,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
+  "description": "abusing jsonplaceholder horrendously",
+  "engines": {
+    "node": "6.11.1"
+  },
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
   "devDependencies": {
