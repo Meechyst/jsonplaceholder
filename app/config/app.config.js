@@ -10,11 +10,11 @@
     $stateProvider
       .state('home', {
         url: '/',
-        template: '<strong>you are at root..click something else</strong>'
+        template: '<strong>Welcome</strong>'
       })
       .state('otherwise', {
         url: "*path",
-        template: '<strong>no route available</strong'
+        template: '<strong>404</strong'
       })
   }
 
