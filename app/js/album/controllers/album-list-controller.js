@@ -4,11 +4,20 @@
   AlbumListController.$inject = ['AlbumService'];
 
   function AlbumListController(AlbumService) {
-
     var vm = this;
+    vm.isLoading = true;
+    vm.isNotFound = false;
+    console.log(vm.isLoading);
 
     AlbumService.getAllAlbums().then(function(res) {
-      vm.albums = res;
+      if (res) {
+        vm.albums = res;
+        vm.isLoading = false;
+        console.log(vm.isLoading);
+
+      } else {
+        vm.isNotFound = true;
+      }
     });
   }
 })();

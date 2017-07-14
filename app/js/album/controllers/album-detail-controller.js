@@ -10,7 +10,6 @@
     // vm.isLoading = true;
     vm.isNotFound = false;
 
-
       if (_album.id > 0) {
         vm.album =   _album;
         vm.albumUserId = _album.userId;

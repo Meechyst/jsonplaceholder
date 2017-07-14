@@ -1,9 +1,9 @@
 <div class="panel panel-primary">
   <div class="panel-body">
-    <div ng-show="isLoading" style="color:red">
+    <div ng-show="album.isLoading" style="color:red">
       <span class='glyphicon glyphicon-time'></span> Loading...
     </div>
-    <div ng-show="!isLoading">
+    <div ng-hide="album.isLoading">
       <div ng-repeat="album in list.albums">
         <a ui-sref="albums.details({id:{{album.id}}})">{{album.title}}</a>
       </div>
