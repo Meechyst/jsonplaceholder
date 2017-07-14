@@ -22,7 +22,4 @@
   angular.module('myApp').config(routes);
 
 
-
-
-
 })();

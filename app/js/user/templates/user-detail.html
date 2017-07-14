@@ -1,0 +1,81 @@
+<h3><i>"{{detail.user.username}}"</i></h3>
+<br>
+
+
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <div ng-show="detail.isLoading" style="color:red">
+      <span class='glyphicon glyphicon-time'></span> Loading...
+    </div>
+    <div ng-show="detail.isNotFound" style="color:red">
+      <span class='glyphicon glyphicon-thumbs-down'></span> User Not Found
+      <hr>
+      <a href="#/users" class="btn btn-primary">
+    				<i class="glyphicon glyphicon-chevron-left"></i> Go to users List
+    			</a>
+    </div>
+    <div ng-show="detail.user">
+      <div class="row">
+        <div class="col-sm-12">
+          <a href="#/users" class="btn btn-primary">
+    						<i class="glyphicon glyphicon-chevron-left"></i> Back
+    					</a>
+        </div>
+      </div>
+
+
+
+      <hr>
+      <div class="row">
+        <div class="col-sm-4"><strong>User ID:</strong></div>
+        <div class="col-sm-7">{{detail.user.id}}</div>
+      </div><br>
+      <div class="row">
+        <div class="col-sm-4"><strong>Full Name:</strong></div>
+        <div class="col-sm-7">{{detail.user.name}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"><strong>E-mail:</strong></div>
+        <div class="col-sm-7">{{detail.user.email}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"><strong>Adress:</strong></div>
+        <div class="col-sm-7">{{detail.user.address.street}} - {{detail.user.address.suite}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"><strong></strong></div>
+        <div class="col-sm-7">{{detail.user.address.city}} / {{detail.user.address.zipcode}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"><strong>Phone:</strong></div>
+        <div class="col-sm-7">{{detail.user.phone}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"><strong>Website:</strong></div>
+        <div class="col-sm-7"><a href="#" target="_blank">{{detail.user.website}}</a></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <script type="text\javascript">
+            var location = "https://www.google.com/maps/embed/v1/place?q=" + {{detail.user.geo.lat}} +','+{{detail.user.geo.lng}} + '&key=AIzaSyDuTD9neX7jtRe-YcqDAvApGPA5qHX6kjk' ;
+            document.write('<iframe width="100%" height="450" frameborder="0" style="border:0" src="' + location + '"></iframe>');
+          </script>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"><strong>Company Name:</strong></div>
+          <div class="col-sm-7">{{detail.user.company.name}}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"><strong>Catch Phrase:</strong></div>
+          <div class="col-sm-7">{{detail.user.company.catchPhrase}}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"><strong>Market:</strong></div>
+          <div class="col-sm-7">{{detail.user.company.bs}}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

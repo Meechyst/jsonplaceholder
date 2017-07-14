@@ -1,9 +1,9 @@
 (function() {
-  angular.module('myApp.album').controller('UserDetailController', UserDetailController);
+  angular.module('myApp.album').controller('AlbumUserDetailController', AlbumUserDetailController);
 
-  UserDetailController.$inject = ['UserService', '_album'];
+  AlbumUserDetailController.$inject = ['UserService', '_album'];
 
-  function UserDetailController(UserService, _album) {
+  function AlbumUserDetailController(UserService, _album) {
 
     var vm = this;
 

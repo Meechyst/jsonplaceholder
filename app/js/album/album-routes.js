@@ -5,7 +5,6 @@
 
   function routes($stateProvider) {
     $stateProvider
-
       .state('albums', {
         abstract: true,
         views: {
@@ -42,9 +41,9 @@
             controllerAs: 'detail'
 
           },
-          'user-detail@albums.details': {
-            templateUrl: 'js/album/templates/user-detail.html',
-            controller: 'UserDetailController',
+          'album-user-detail@albums.details': {
+            templateUrl: 'js/album/templates/album-user-detail.html',
+            controller: 'AlbumUserDetailController',
             controllerAs: 'userdetail'
           }
         },
