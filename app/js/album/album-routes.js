@@ -6,25 +6,25 @@
   function routes($stateProvider) {
     $stateProvider
 
-      .state('album', {
-        url: '/albumpanel',
+      .state('albums', {
+        abstract: true,
         views: {
           '': {
-            template: 'Album Panel',
-            controller: 'AlbumController',
-            controllerAs: 'alb'
+            templateUrl: 'js/album/templates/index.html'
           },
-          'side': {
-            templateUrl: 'js/album/templates/side.html',
-            controller: 'AlbumController',
-            controllerAs: 'alb'
+          'album-header@albums': {
+            templateUrl: 'js/album/templates/album-header-info.html',
           }
         }
-      }).state('allAlbums', {
+      }).state('albums.list', {
         url: '/albums',
-        templateUrl: 'js/album/templates/albums.html',
-        controller: 'AlbumController',
-        controllerAs: 'alb',
+        views: {
+          'album-list': {
+            templateUrl: 'js/album/templates/album-list.html',
+            controller: 'AlbumListController',
+            controllerAs: 'list'
+          }
+        }
         // resolve: {
         //   _albums: ['AlbumService', function(AlbumService){
         //     return AlbumService.getAllAlbums().then(function(resp){
@@ -33,20 +33,27 @@
         //   }]
         // }
       })
-      .state('oneAlbum', {
+      .state('albums.details', {
         url: '/albums/:id',
-
         views: {
-          '': {
-            templateUrl: 'js/album/templates/album.html',
-            controller: 'AlbumController',
-            controllerAs: 'alb'
+          'album-detail': {
+            templateUrl: 'js/album/templates/album-detail.html',
+            controller: 'AlbumDetailController',
+            controllerAs: 'detail'
+
           },
-          'side': {
-            templateUrl: 'js/album/templates/side.html',
-            controller: 'AlbumController',
-            controllerAs: 'alb'
+          'user-detail@albums.details': {
+            templateUrl: 'js/album/templates/user-detail.html',
+            controller: 'UserDetailController',
+            controllerAs: 'userdetail'
           }
+        },
+        resolve: {
+          _album: ['AlbumService', '$stateParams', function(AlbumService, $stateParams){
+            return AlbumService.getAlbum($stateParams.id).then(function(resp){
+              return resp;
+            });
+          }]
         },
         // resolve: {
         //   _album: ['AlbumService', '$stateParams', function(AlbumService, $stateParams){
@@ -56,6 +63,7 @@
         //   }]
         // }
       })
+
   }
   angular.module('myApp.album').config(routes);
 })();

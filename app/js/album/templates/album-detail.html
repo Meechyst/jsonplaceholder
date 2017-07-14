@@ -1,0 +1,41 @@
+
+    <h3><i>"{{detail.album.title}}"</i></h3><br>
+
+
+    <div class="panel panel-primary">
+    	<div class="panel-body">
+    		<div ng-show="detail.isLoading" style="color:red">
+    			<span class='glyphicon glyphicon-time'></span> Loading...
+    		</div>
+    		<div ng-show="detail.isNotFound" style="color:red">
+    			<span class='glyphicon glyphicon-thumbs-down'></span> Album Not Found
+    			<hr>
+    			<a href="#/albums" class="btn btn-primary">
+    				<i class="glyphicon glyphicon-chevron-left"></i> Go to Albums List
+    			</a>
+    		</div>
+    		<div ng-show="detail.album">
+    			<div class="row">
+    				<div class="col-sm-12">
+    					<a href="#/albums" class="btn btn-primary">
+    						<i class="glyphicon glyphicon-chevron-left"></i> Back
+    					</a>
+    				</div>
+    			</div>
+    			<hr>
+    			<div class="row">
+    				<div class="col-sm-4"><strong>Album No</strong></div>
+    				<div class="col-sm-7">{{detail.album.id}}</div>
+    			</div>
+    			<div class="row">
+    				<div class="col-sm-4"><strong>Title</strong></div>
+    				<div class="col-sm-7">{{detail.album.title}}</div>
+    			</div>
+          <div class="row">
+    				<div class="hidden">{{detail.album.userId}}</div>
+    			</div>
+    			</div>
+    			<div ui-view="user-detail"></div>
+    		</div>
+    	</div>
+    </div>

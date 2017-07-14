@@ -1,0 +1,17 @@
+<div>
+	<hr>
+	<div ng-show="userdetail.isUserDetailLoading" style="color:red">
+		<span class='glyphicon glyphicon-time'></span> Fetching user info...
+	</div>
+	<div ng-show="userdetail.isUserDetailNotFound" style="color:red">
+		<span class='glyphicon glyphicon-thumbs-down'></span> User Not Found
+	</div>
+
+	<div ng-show="userdetail.user">
+		<div class="row">
+			<div class="col-sm-4"><strong>User:</strong></div>
+			<div class="col-sm-7">{{userdetail.user.name}}</div>
+		</div>
+	</div>
+
+</div>
