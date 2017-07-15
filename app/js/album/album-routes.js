@@ -48,8 +48,8 @@
           }
         },
         resolve: {
-          _album: ['AlbumService', '$stateParams', function(AlbumService, $stateParams){
-            return AlbumService.getAlbum($stateParams.id).then(function(resp){
+          _album: ['AlbumService', '$stateParams', function(AlbumService, $stateParams) {
+            return AlbumService.getAlbum($stateParams.id).then(function(resp) {
               return resp;
             });
           }]

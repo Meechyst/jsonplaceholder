@@ -3,23 +3,30 @@
 
   angular.module('myApp.services').factory('UserService', UserService);
 
-  UserService.$inject = ['Restangular', '$log', 'toastr', 'ApiService'];
+  UserService.$inject = ['Restangular', '$log', 'toastr', 'ApiService', '$q'];
 
-  function UserService(Restangular, $log, toastr, ApiService) {
+  function UserService(Restangular, $log, toastr, ApiService, $q) {
 
-    var baseUrl = ApiService.baseUrl
+    var cachedUsers, p;
+    var baseUrl = ApiService.baseUrl;
 
     var service = {
-      getAllUsers: getAllUsers,
+      deleteUser: deleteUser,
+      getAllUsers: function(){return $q.when(cachedUsers || p ||getAllUsersHelper())},
       getUser: getUser,
       postUser: postUser,
-      updateUser: updateUser,
-      deleteUser: deleteUser
+      updateUser: updateUser
     };
 
 
-    function getAllUsers() {
-      return Restangular.all('/' + baseUrl + 'users').getList();
+    function getAllUsersHelper() {
+      var deferred = $q.defer();
+      p = $q.promise;
+      Restangular.all('/' + baseUrl + 'users').getList().then(function(resp){
+        cachedUsers = resp;
+        deferred.resolve(resp);
+      });
+      return deferred.promise;
     }
 
     function getUser(id) {

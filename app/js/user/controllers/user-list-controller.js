@@ -1,4 +1,4 @@
-(function(){
+(function() {
 
   angular.module('myApp.user').controller('UserListController', UserListController);
 
@@ -18,6 +18,5 @@
       }
     });
   }
-
 
 })();

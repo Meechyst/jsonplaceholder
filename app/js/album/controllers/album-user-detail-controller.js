@@ -10,17 +10,14 @@
     vm.isUserDetailLoading = true;
     vm.isUserDetailNotFound = false;
 
-
-    UserService.getUser(_album.userId).then(function(res){
-      if(res.id > 0){
+    UserService.getUser(_album.userId).then(function(res) {
+      if (res.id > 0) {
         vm.user = res;
-        console.log(vm.user);
-      }
-      else{
+      } else {
         vm.isUserDetailNotFound = true;
       }
       vm.isUserDetailLoading = false;
     });
-    }
+  }
 
 })();

@@ -9,18 +9,26 @@
 
     var baseUrl = ApiService.baseUrl
 
+    var cachedAlbums, p;
+
     var service = {
-      getAllAlbums: getAllAlbums,
+      deleteAlbum: deleteAlbum,
+      getAllAlbums: function (){ return $q.when(cachedAlbums || p || getAllAlbumsHelper())},
       getAlbum: getAlbum,
       getAllAlbumsofAUser: getAllAlbumsofAUser,
       postAlbum: postAlbum,
       updateAlbum: updateAlbum,
-      deleteAlbum: deleteAlbum
     };
 
 
-    function getAllAlbums() {
-      return Restangular.all('/'+baseUrl + 'albums').getList();
+    function getAllAlbumsHelper() {
+      var deferred = $q.defer();
+      p = deferred.promise;
+      Restangular.all('/'+baseUrl + 'albums').getList().then(function(resp){
+        cachedAlbums = resp;
+        deferred.resolve(resp);
+      });
+      return deferred.promise;
     }
 
     function getAlbum(id) {
