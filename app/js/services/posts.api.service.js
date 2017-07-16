@@ -7,14 +7,14 @@
 
   function PostService(Restangular, $log, toastr, ApiService, $q) {
 
-    var baseUrl = ApiService.baseUrl
-    var cachedPosts, cachedComments, cachedUserPosts, a, b, c;
+    var baseUrl = ApiService.baseUrl;
+    var cachedPosts, p;
 
     var service = {
       deletePost: deletePost,
-      getAllCommentsofAPost: function (userId){ return $q.when(cachedComments || a || getAllCommentsofAPostHelper(userId))},
-      getAllPosts: function (){ return $q.when(cachedPosts || b || getAllPostsHelper())},
-      getAllPostsofAUser: function (){ return $q.when(cachedUserPosts || c || getAllPostsofAUserHelper(userId))},
+      getAllCommentsofAPost: getAllCommentsofAPost,
+      getAllPosts: function (){ return $q.when(cachedPosts || p || getAllPostsHelper())},
+      getAllPostsofAUser: getAllPostsofAUser,
       getPost: getPost,
       postPost: postPost,
       updatePost: updatePost
@@ -23,7 +23,7 @@
 
     function getAllPostsHelper() {
       var deferred = $q.defer();
-      b = deferred.promise;
+      p = deferred.promise;
       Restangular.all('/' + baseUrl + 'posts').getList().then(function(resp){
         cachedPosts = resp;
         deferred.resolve(resp);
@@ -36,33 +36,16 @@
     }
 
 
-    function getAllCommentsofAPostHelper(userId) {
-      var deferred = $q.defer();
-      a = deferred.promise;
-        Restangular.one('/' + baseUrl + 'posts', userId).getList('comments').then(function(resp) {
-        cachedComments = resp;
-        console.log(resp);
-        deferred.resolve(resp);
-      });
-      return deferred.promise;
+    function getAllCommentsofAPost(userId) {
+      return Restangular.one('/' + baseUrl + 'posts', userId).getList('comments')
     }
 
-
-
-    function getAllPostsofAUserHelper(userId) {
-      c = deferred.promise;
-      Restangular.all('/' + baseUrl + 'posts').customGETLIST('', {
-        userId: userId
-      }).then(function(resp) {
-        cachedUserPosts = resp;
-        deferred.resolve(resp);
-      });
-      return deferred.promise;
+    function getAllPostsofAUser(userId) {
+      return Restangular.all('/' + baseUrl + 'posts').customGET('', { userId: userId })
     }
 
     function postPost(data) {
       Restangular.all(baseUrl + 'posts').post(data).then(function(resp) {
-        console.log("new post" + resp.data);
         return resp;
       });
     }

@@ -8,7 +8,7 @@
     var vm = this;
 
     vm.comments = _postComment;
-    console.log(vm.comments);
+    
   }
 
 })();

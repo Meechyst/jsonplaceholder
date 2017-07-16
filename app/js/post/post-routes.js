@@ -56,11 +56,13 @@
               console.log(resp);
             });
           }],
+          //// a resolve in another resolve. yodawg.exe
           // _postUser: ['PostService', '_post', function(PostService, _post){
           //   return PostService.getAllPostsofAUser(_post.userId).then(function() {
+          //     console.log(_post.userId);
           //     return resp;
           //   });
-          // }]
+          // }],
           _postComment: ['PostService', '$stateParams', function(PostService, $stateParams) {
             return PostService.getAllCommentsofAPost($stateParams.id).then(function(resp){
               return resp;
