@@ -1,9 +1,9 @@
 (function() {
   angular.module('myApp.album').controller('AlbumUserDetailController', AlbumUserDetailController);
 
-  AlbumUserDetailController.$inject = ['UserService', '_album'];
+  AlbumUserDetailController.$inject = ['UserService', '_album', '$state'];
 
-  function AlbumUserDetailController(UserService, _album) {
+  function AlbumUserDetailController(UserService, _album, $state) {
 
     var vm = this;
 

@@ -47,6 +47,25 @@
         <div class="col-sm-7">{{detail.user.address.city}} / {{detail.user.address.zipcode}}</div>
       </div>
       <div class="row">
+        <div class="col-sm-12">
+          <span class="hide" id="address">{{detail.user.address.geo.lat}} ,{{detail.user.address.geo.lng}}</span>
+          <iframe id="map" width="520" height="300"></iframe>
+          <script type="text/javascript">
+            jQuery(
+              function($) {
+                setTimeout(function(){
+                var q = encodeURIComponent($('#address').text());
+                console.log(q);
+                $('#map')
+                  .attr('src',
+                    'https://www.google.com/maps/embed/v1/place?key=AIzaSyDuTD9neX7jtRe-YcqDAvApGPA5qHX6kjk&q=' + q);
+                  }, 1000)
+              }
+            )
+          </script>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-sm-4"><strong>Phone:</strong></div>
         <div class="col-sm-7">{{detail.user.phone}}</div>
       </div>
@@ -55,27 +74,19 @@
         <div class="col-sm-7"><a href="#" target="_blank">{{detail.user.website}}</a></div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
-          <script type="text\javascript">
-            var location = "https://www.google.com/maps/embed/v1/place?q=" + {{detail.user.geo.lat}} +','+{{detail.user.geo.lng}} + '&key=AIzaSyDuTD9neX7jtRe-YcqDAvApGPA5qHX6kjk' ;
-            document.write('<iframe width="100%" height="450" frameborder="0" style="border:0" src="' + location + '"></iframe>');
-          </script>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4"><strong>Company Name:</strong></div>
-          <div class="col-sm-7">{{detail.user.company.name}}</div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4"><strong>Catch Phrase:</strong></div>
-          <div class="col-sm-7">{{detail.user.company.catchPhrase}}</div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4"><strong>Market:</strong></div>
-          <div class="col-sm-7">{{detail.user.company.bs}}</div>
-        </div>
-
+        <div class="col-sm-4"><strong>Company Name:</strong></div>
+        <div class="col-sm-7">{{detail.user.company.name}}</div>
       </div>
+      <div class="row">
+        <div class="col-sm-4"><strong>Catch Phrase:</strong></div>
+        <div class="col-sm-7">{{detail.user.company.catchPhrase}}</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"><strong>Market:</strong></div>
+        <div class="col-sm-7">{{detail.user.company.bs}}</div>
+      </div>
+
     </div>
   </div>
+</div>
 </div>
