@@ -47,22 +47,11 @@
         <div class="col-sm-7">{{detail.user.address.city}} / {{detail.user.address.zipcode}}</div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
-          <span class="hide" id="address">{{detail.user.address.geo.lat}} ,{{detail.user.address.geo.lng}}</span>
-          <iframe id="map" width="520" height="300"></iframe>
-          <script type="text/javascript">
-            jQuery(
-              function($) {
-                setTimeout(function(){
-                var q = encodeURIComponent($('#address').text());
-                console.log(q);
-                $('#map')
-                  .attr('src',
-                    'https://www.google.com/maps/embed/v1/place?key=AIzaSyDuTD9neX7jtRe-YcqDAvApGPA5qHX6kjk&q=' + q);
-                  }, 1000)
-              }
-            )
-          </script>
+        <div class="col-sm-4"><button  class="btn btn-primary" ng-click="detail.toggleMap()"><i class="glyphicon glyphicon-map-marker"></i>Show/Hide The Map</button></div>
+        <div class="col-sm-7">
+          <div ng-show="detail.showMap">
+            <iframe ng-src="{{detail.mapUrl}}"/>
+          </div>
         </div>
       </div>
       <div class="row">
