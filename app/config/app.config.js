@@ -14,7 +14,7 @@
       })
       .state('otherwise', {
         url: "*path",
-        template: '<strong>404</strong'
+        template: '<strong>404</strong>'
       })
   }
 

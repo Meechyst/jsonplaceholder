@@ -8,7 +8,6 @@
             'restangular',
             'toastr',
 
-            // Application Modules
             'myApp.services',
             'myApp.directives',
             'myApp.album',
