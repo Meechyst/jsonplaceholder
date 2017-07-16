@@ -1,0 +1,11 @@
+
+	<div ng-show="userdetail.isUserDetailLoading" style="color:red">
+		<span class='glyphicon glyphicon-time'></span> Fetching user info...
+	</div>
+	<div ng-show="userdetail.isUserDetailNotFound" style="color:red">
+		<span class='glyphicon glyphicon-thumbs-down'></span> User Not Found
+	</div>
+
+	<div ng-show="userdetail.user">
+			<div class="pull-right"><a href="#/users/{{userdetail.user.id}}">{{userdetail.user.name}}</a></div>
+	</div>

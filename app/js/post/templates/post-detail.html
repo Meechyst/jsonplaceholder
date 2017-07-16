@@ -1,0 +1,34 @@
+
+    <h3 style="text-align: center"><i>{{detail.post.title | uppercase}}</i></h3><br>
+
+
+    <div class="panel panel-primary">
+    	<div class="panel-body">
+    		<div ng-show="detail.isLoading" style="color:red">
+    			<span class='glyphicon glyphicon-time'></span> Loading...
+    		</div>
+    		<div ng-show="detail.isNotFound" style="color:red">
+    			<span class='glyphicon glyphicon-thumbs-down'></span> Post Not Found
+    			<hr>
+    			<a href="#/posts" class="btn btn-primary">
+    				<i class="glyphicon glyphicon-chevron-left"></i> Go to Posts List
+    			</a>
+    		</div>
+    		<div ng-show="detail.post">
+    			<div class="row">
+    				<div class="col-sm-12">
+    					<a href="#/posts" class="btn btn-primary">
+    						<i class="glyphicon glyphicon-chevron-left"></i> Back
+    					</a>
+              <div ui-view="post-user-detail"></div>
+    				</div>
+    			</div>
+    			<hr>
+    			<div class="row">
+    				<div class="col-sm-12">{{detail.post.body}}</div>
+    			</div>
+    			</div>
+
+    		</div>
+    	</div>
+      <div ui-view="post-comment-detail"></div>

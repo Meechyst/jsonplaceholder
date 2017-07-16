@@ -15,7 +15,6 @@
     vm.userGeo = vm.user.address.geo.lat + "," + vm.user.address.geo.lng;
     vm.mapUrl = $sce.trustAsResourceUrl
     ("https://www.google.com/maps/embed/v1/place?key=AIzaSyDuTD9neX7jtRe-YcqDAvApGPA5qHX6kjk&q="+ vm.userGeo);
-    console.log(vm.mapUrl);
     vm.toggleMap = function() {
       vm.showMap = !vm.showMap;
     }

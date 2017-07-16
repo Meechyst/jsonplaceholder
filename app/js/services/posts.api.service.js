@@ -3,52 +3,61 @@
 
   angular.module('myApp.services').factory('PostService', PostService);
 
-  PostService.$inject = ['restangular', '$log', 'toastr', 'ApiService'];
+  PostService.$inject = ['Restangular', '$log', 'toastr', 'ApiService', '$q'];
 
-  function PostService(Restangular, $log, toastr, ApiService) {
+  function PostService(Restangular, $log, toastr, ApiService, $q) {
 
     var baseUrl = ApiService.baseUrl
+    var cachedPosts, cachedComments, cachedUserPosts, a, b, c;
 
     var service = {
-      getAllPosts: getAllPosts,
+      deletePost: deletePost,
+      getAllCommentsofAPost: function (userId){ return $q.when(cachedComments || a || getAllCommentsofAPostHelper(userId))},
+      getAllPosts: function (){ return $q.when(cachedPosts || b || getAllPostsHelper())},
+      getAllPostsofAUser: function (){ return $q.when(cachedUserPosts || c || getAllPostsofAUserHelper(userId))},
       getPost: getPost,
-      getAllCommentsofAPost: getAllCommentsofAPost,
-      getAllPostsofAUser: getAllPostofAUser,
       postPost: postPost,
-      updatePost: updatePost,
-      deletePost: deletePost
+      updatePost: updatePost
     };
 
 
-    function getAllPosts() {
-
-      Restangular.all(baseUrl + 'posts').getList().then(function(resp) {
-        console.log('get All Posts ' + resp.data);
-        return resp.data;
+    function getAllPostsHelper() {
+      var deferred = $q.defer();
+      b = deferred.promise;
+      Restangular.all('/' + baseUrl + 'posts').getList().then(function(resp){
+        cachedPosts = resp;
+        deferred.resolve(resp);
       });
+      return deferred.promise;
     }
 
     function getPost(id) {
-      Restangular.one(baseUrl + 'posts', id).get().then(function(resp) {
-        console.log('get spesific post ' + resp);
-        return resp.data;
-      });
+      return Restangular.one('/' + baseUrl + 'posts', id).get()
     }
 
-    function getAllCommentsofAPost(commentId) {
-      Restangular.one(baseUrl + 'posts', commentId).one('comments').get().then(function(resp) {
-        console.log('get all comments of a post ' + resp);
-        return resp.data;
+
+    function getAllCommentsofAPostHelper(userId) {
+      var deferred = $q.defer();
+      a = deferred.promise;
+        Restangular.one('/' + baseUrl + 'posts', userId).getList('comments').then(function(resp) {
+        cachedComments = resp;
+        console.log(resp);
+        deferred.resolve(resp);
       });
+      return deferred.promise;
     }
 
-    function getAllPostsofAUser(userId) {
-      Restangular.all(baseUrl + 'posts').customGETLIST('', {
+
+
+    function getAllPostsofAUserHelper(userId) {
+      c = deferred.promise;
+      Restangular.all('/' + baseUrl + 'posts').customGETLIST('', {
         userId: userId
       }).then(function(resp) {
-        console.log("get all posts of a user" + resp);
-        return resp.data;
+        cachedUserPosts = resp;
+        deferred.resolve(resp);
       });
+      return deferred.promise;
     }
 
     function postPost(data) {

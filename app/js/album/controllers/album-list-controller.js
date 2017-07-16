@@ -1,4 +1,5 @@
 (function() {
+  
   angular.module('myApp.album').controller('AlbumListController', AlbumListController);
 
   AlbumListController.$inject = ['AlbumService'];

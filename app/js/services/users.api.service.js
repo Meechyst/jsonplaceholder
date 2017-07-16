@@ -12,12 +12,11 @@
 
     var service = {
       deleteUser: deleteUser,
-      getAllUsers: function(){return $q.when(cachedUsers || p ||getAllUsersHelper())},
+      getAllUsers: function(){return $q.when(cachedUsers || p || getAllUsersHelper())},
       getUser: getUser,
       postUser: postUser,
       updateUser: updateUser
     };
-
 
     function getAllUsersHelper() {
       var deferred = $q.defer();
@@ -30,7 +29,10 @@
     }
 
     function getUser(id) {
+
       return Restangular.one('/' + baseUrl + 'users', id).get();
+      debugger;
+
     }
 
 
